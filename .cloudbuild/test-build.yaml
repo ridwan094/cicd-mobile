@@ -12,7 +12,7 @@ steps:
     args:
       - "-c"
       - >
-        npm install
+        npm run lint
     id: "Execute: npm run lint"
 
   - name: "reactnativecommunity/react-native-android"
