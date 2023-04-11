@@ -1,25 +1,33 @@
-# name: Github Actions
-
-# on: [push, pull_request]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     container: reactnativecommunity/react-native-android
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Envinfo
-#         run: npx envinfo
-#       - name: Build application
-#         run: yarn install && cd android && chmod +x gradlew && ./gradlew assembleRelease
-
 steps:
   - name: "reactnativecommunity/react-native-android"
     entrypoint: bash
     args:
       - "-c"
       - >
-        npm install && 
+        npm install
+    id: "Execute: npm install"
+
+  - name: "reactnativecommunity/react-native-android"
+    entrypoint: bash
+    args:
+      - "-c"
+      - >
+        npm install
+    id: "Execute: npm run lint"
+
+  - name: "reactnativecommunity/react-native-android"
+    entrypoint: bash
+    args:
+      - "-c"
+      - >
+        npm run test
+    id: "Execute: npm test"
+
+  - name: "reactnativecommunity/react-native-android"
+    entrypoint: bash
+    args:
+      - "-c"
+      - >
         cd android &&
         chmod +x gradlew &&
         ./gradlew assembleRelease
